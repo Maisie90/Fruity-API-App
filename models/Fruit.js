@@ -25,10 +25,14 @@ class Fruit{
 
     static create = (data) => {
         const newFruit = data
-        console.log(newFruit);
+        const updatedFruit = fruits.find(fruit => fruit.name.toLowerCase() == newFruit.data.toLowerCase())
+        if (!updatedFruit) {
         newFruit["id"] = fruits.length + 1
         fruits.push(newFruit)
-        return new Fruit(newFruit)
+        return new Fruit(newFruit)}
+        else {
+            throw error("fruit already exists")
+        }
     }
 
     update (data) {                                       // arrow function will not work here as you cannot call it before it has been run
