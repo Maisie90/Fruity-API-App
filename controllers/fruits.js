@@ -51,15 +51,15 @@ const update = async (req, res) => {
 // DESTROY
 
 const destroy = async (req, res) => {
-    const name = req.params.name.toLowerCase()
+    const name = req.params.name.toLowerCase();
     try {
-        const deletedFruit = await Fruit.destroy(name)
-        res.status(204).send(`${deletedFruit.name} has been deleted`)  //deletedFruit.name - defining what part (key) of the deleted fruit (object) information that we want to display (in this case, the name)
-        
+      const fruit = await Fruit.showOne(name);
+      const result = await fruit.destroy();
+      res.sendStatus(204)
     } catch (err) {
-        res.status(405).send("Unable to delete fruit")
+      res.status(404).send({ error: err});
     }
-}
+};
 
  module.exports = {
     index,

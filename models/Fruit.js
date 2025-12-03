@@ -45,13 +45,13 @@ class Fruit{
         }
     }
 
-    static destroy = (name) => {
-        
-        const fruitIndex = fruits.findIndex(fruit => fruit.name.toLowerCase() == name)
-        
-        if (fruitIndex !== -1) {  
-         const deletedFruit = fruits.splice(fruitIndex, 1)
-         return deletedFruit[0]
+  destroy(){
+        const deletedFruit = fruits.find(fruit => fruit.name.toLowerCase() == this.name.toLowerCase())
+        if(deletedFruit){
+            const index = fruits.indexOf(deletedFruit)
+            fruits.splice(index, 1)
+        } else {
+            throw new Error("Fruit not found")
         }
     }
 }
